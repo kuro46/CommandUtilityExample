@@ -1,0 +1,19 @@
+name: CommandUtilityExample
+version: $version
+author: shirokuro
+description: Example project of CommandUtility
+main: com.github.kuro46.commandutilityexample.Main
+commands:
+  commandutilityexample:
+    description: "Example command"
+    usage: "Usage: /<command> help"
+    permission: commandutilityexample.admin
+permissions:
+  commandutilityexample.*:
+    default: op
+    description: CommandUtilityExample main permission.
+    children:
+      embedscript.admin: true
+  commandutilityexample.admin:
+    default: op
+    description: CommandUtilityExample administration permission.
