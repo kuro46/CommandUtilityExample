@@ -16,13 +16,13 @@ Teleport executor to specified location.
 
 **Permission:** `commandutilityexample.admin`
 
-Change executor's gamemode to <gamemode>.
+Change executor's gamemode to `<gamemode>`.
 
 ### `/commandutilityexample name <name>`
 
 **Permission:** `commandutilityexample.admin`
 
-Set executor's display name to <name>. Space character is allowed.
+Set executor's display name to `<name>`. Space character is allowed.
 
 ### `/commandutilityexample help`
 
