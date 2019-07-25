@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.github.kuro46"
-version = "0.1.0"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     compileOnly("org.bukkit", "bukkit", "1.12.2-R0.1-SNAPSHOT")
-    implementation("com.github.kuro46", "CommandUtility", "v0.1.0")
+    implementation("com.github.kuro46", "CommandUtility", "v0.2.0")
     implementation("org.jetbrains.kotlin", "kotlin-stdlib-jdk8", "1.3.41")
 }
 

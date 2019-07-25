@@ -60,15 +60,15 @@ public class Main extends JavaPlugin {
             new GameModeHandler(),
             "Change executor's gamemode."
         ));
-        CommandSection rootSection = new CommandSection("commandutilityexample");
+        CommandSections rootSection = CommandSections.fromStrings(Arrays.asList("commandutilityexample"));
         commandManager.registerCommand(new Command(
             CommandSections.fromStrings(Arrays.asList("commandutilityexample", "help")),
-            new HelpCommandHandler(commandManager.getCommandTree().getChildren().get(rootSection)),
+            new HelpCommandHandler(rootSection),
             "Display help message."
         ));
     }
 
-    private static StringConverters initConverters() {
+    private StringConverters initConverters() {
         StringConverters converters = new StringConverters();
         converters.registerDefaults();
         // Register StringConverter to convert from String to GameMode
@@ -84,6 +84,12 @@ public class Main extends JavaPlugin {
             })
         );
         return converters;
+    }
+
+    private static List<String> filterByComplitingArg(List<String> candidates, String completingArg) {
+        return candidates.stream()
+          .filter((candidate) -> candidate.toLowerCase().startsWith(completingArg.toLowerCase()))
+          .collect(Collectors.toList());
     }
 
     private static class GameModeHandler extends CommandHandler {
@@ -134,7 +140,7 @@ public class Main extends JavaPlugin {
                 for (GameMode gameMode : GameMode.values()) {
                     candidates.add(gameMode.toString());
                 }
-                return candidates;
+                return filterByComplitingArg(candidates, completing.getValue());
             } else {
                 return Collections.emptyList();
             }
@@ -186,7 +192,7 @@ public class Main extends JavaPlugin {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     candidates.add(player.getName());
                 }
-                return candidates;
+                return filterByComplitingArg(candidates, completing.getValue());
             } else {
                 return Collections.emptyList();
             }
@@ -267,7 +273,10 @@ public class Main extends JavaPlugin {
                         break;
                 }
                 Objects.nonNull(numberToSuggestion);
-                return Collections.singletonList(numberToSuggestion.toString());
+                return filterByComplitingArg(
+                    Collections.singletonList(numberToSuggestion.toString()),
+                    completing.getValue()
+                );
             } else {
                 return Collections.emptyList();
             }
