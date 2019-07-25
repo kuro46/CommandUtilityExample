@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc", "spigot-api", "1.12.2-R0.1-SNAPSHOT")
+    compileOnly("org.bukkit", "bukkit", "1.12.2-R0.1-SNAPSHOT")
     implementation("com.github.kuro46", "CommandUtility", "v0.1.0")
     implementation("org.jetbrains.kotlin", "kotlin-stdlib-jdk8", "1.3.41")
 }
