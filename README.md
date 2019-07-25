@@ -13,12 +13,16 @@ Example project for [CommandUtility](https://github.com/kuro46/CommandUtility).
 
 Teleport executor to specified location.
 
+![teleport](https://user-images.githubusercontent.com/36619228/61878729-7a7dd700-af2c-11e9-932a-5e9655b7241b.gif)
+
 ### `/commandutilityexample gamemode <gamemode>`
 
 **Permission:** `commandutilityexample.admin`  
 **Handled at** [GameModeHandler](src/main/java/com/github/kuro46/commandutilityexample/Main.java#L95)
 
 Change executor's gamemode to `<gamemode>`.
+
+![gamemode](https://user-images.githubusercontent.com/36619228/61878730-7b166d80-af2c-11e9-9a86-7f2ad379472b.gif)
 
 ### `/commandutilityexample name <name>`
 
@@ -27,12 +31,16 @@ Change executor's gamemode to `<gamemode>`.
 
 Set executor's display name to `<name>`. Space character is allowed.
 
+![name](https://user-images.githubusercontent.com/36619228/61878728-7a7dd700-af2c-11e9-8686-38f76f9fa476.gif)
+
 ### `/commandutilityexample help`
 
 **Permisson:** `commandutilityexample.admin`  
 **Registered at** [here](src/main/java/com/github/kuro46/commandutilityexample/Main.java#L64)
 
 Display helps.
+
+![help](https://user-images.githubusercontent.com/36619228/61878727-7a7dd700-af2c-11e9-9843-7756a0c06db5.gif)
 
 ## Tested version
 
