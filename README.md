@@ -2,7 +2,7 @@
 
 Example project for [CommandUtility](https://github.com/kuro46/CommandUtility).
 
-**Following Revision:** [v0.2.0](https://github.com/kuro46/CommandUtility/tree/v0.2.0)
+**Following Revision:** [v0.2.1](https://github.com/kuro46/CommandUtility/tree/v0.2.1)
 
 ## Commands
 
