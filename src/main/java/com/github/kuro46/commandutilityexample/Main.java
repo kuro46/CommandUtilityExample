@@ -6,7 +6,6 @@ import com.github.kuro46.commandutility.handle.CastError;
 import com.github.kuro46.commandutility.handle.Command;
 import com.github.kuro46.commandutility.handle.CommandHandler;
 import com.github.kuro46.commandutility.handle.CommandManager;
-import com.github.kuro46.commandutility.handle.CommandSection;
 import com.github.kuro46.commandutility.handle.CommandSections;
 import com.github.kuro46.commandutility.handle.CommandSenderType;
 import com.github.kuro46.commandutility.handle.FallbackCommandHandler;
@@ -19,14 +18,12 @@ import com.github.kuro46.commandutility.syntax.LongArgument;
 import com.github.kuro46.commandutility.syntax.OptionalArgument;
 import com.github.kuro46.commandutility.syntax.ParseErrorReason;
 import com.github.kuro46.commandutility.syntax.RequiredArgument;
-import java.util.ArrayList;
+import com.github.kuro46.commandutility.CompletionUtils;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -46,23 +43,23 @@ public class Main extends JavaPlugin {
             initConverters()
         );
         commandManager.registerCommand(new Command(
-            CommandSections.fromStrings(Arrays.asList("commandutilityexample", "name")),
+            CommandSections.fromString("commandutilityexample name"),
             new NameHandler(),
             "Change executor's name."
         ));
         commandManager.registerCommand(new Command(
-            CommandSections.fromStrings(Arrays.asList("commandutilityexample", "tp")),
+            CommandSections.fromString("commandutilityexample tp"),
             new TeleportHandler(),
             "Teleport executor to specified location."
         ));
         commandManager.registerCommand(new Command(
-            CommandSections.fromStrings(Arrays.asList("commandutilityexample", "gamemode")),
+            CommandSections.fromString("commandutilityexample gamemode"),
             new GameModeHandler(),
             "Change executor's gamemode."
         ));
-        CommandSections rootSection = CommandSections.fromStrings(Arrays.asList("commandutilityexample"));
+        CommandSections rootSection = CommandSections.fromString("commandutilityexample");
         commandManager.registerCommand(new Command(
-            CommandSections.fromStrings(Arrays.asList("commandutilityexample", "help")),
+            CommandSections.fromString("commandutilityexample help"),
             new HelpCommandHandler(rootSection),
             "Display help message."
         ));
@@ -84,12 +81,6 @@ public class Main extends JavaPlugin {
             })
         );
         return converters;
-    }
-
-    private static List<String> filterByComplitingArg(List<String> candidates, String completingArg) {
-        return candidates.stream()
-          .filter((candidate) -> candidate.toLowerCase().startsWith(completingArg.toLowerCase()))
-          .collect(Collectors.toList());
     }
 
     private static class GameModeHandler extends CommandHandler {
@@ -136,11 +127,10 @@ public class Main extends JavaPlugin {
         ) {
             CompletingArgument completing = completionData.getCompletingArgument();
             if (completing != null && completing.getName().equals("gamemode")) {
-                List<String> candidates = new ArrayList<>();
-                for (GameMode gameMode : GameMode.values()) {
-                    candidates.add(gameMode.toString());
-                }
-                return filterByComplitingArg(candidates, completing.getValue());
+                return CompletionUtils.filterCandidates(
+                    Arrays.asList(GameMode.values()),
+                    completing.getValue()
+                );
             } else {
                 return Collections.emptyList();
             }
@@ -188,11 +178,7 @@ public class Main extends JavaPlugin {
         ) {
             CompletingArgument completing = completionData.getCompletingArgument();
             if (completing != null && completing.getName().equals("name")) {
-                List<String> candidates = new ArrayList<>();
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    candidates.add(player.getName());
-                }
-                return filterByComplitingArg(candidates, completing.getValue());
+                return CompletionUtils.playerCandidates(completing.getValue());
             } else {
                 return Collections.emptyList();
             }
@@ -255,7 +241,7 @@ public class Main extends JavaPlugin {
                 Number numberToSuggestion = null;
                 switch (completing.getName()) {
                     case "world":
-                        return Bukkit.getWorlds().stream().map((world) -> world.getName()).collect(Collectors.toList());
+                        return CompletionUtils.worldCandidates(completing.getValue());
                     case "x":
                         numberToSuggestion = looking.getX();
                         break;
@@ -273,7 +259,7 @@ public class Main extends JavaPlugin {
                         break;
                 }
                 Objects.nonNull(numberToSuggestion);
-                return filterByComplitingArg(
+                return CompletionUtils.filterCandidates(
                     Collections.singletonList(numberToSuggestion.toString()),
                     completing.getValue()
                 );

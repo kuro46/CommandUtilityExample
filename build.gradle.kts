@@ -9,10 +9,11 @@ plugins {
 }
 
 group = "com.github.kuro46"
-version = "0.2.1"
+version = "0.3.0"
 
 repositories {
     mavenCentral()
+    mavenLocal()
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
     maven("https://jitpack.io")
@@ -20,8 +21,7 @@ repositories {
 
 dependencies {
     compileOnly("org.bukkit", "bukkit", "1.12.2-R0.1-SNAPSHOT")
-    implementation("com.github.kuro46", "CommandUtility", "v0.2.1")
-    implementation("org.jetbrains.kotlin", "kotlin-stdlib-jdk8", "1.3.41")
+    implementation("com.github.kuro46", "CommandUtility", "v0.3.0")
 }
 
 tasks.withType<Jar> {

@@ -2,7 +2,7 @@
 
 Example project for [CommandUtility](https://github.com/kuro46/CommandUtility).
 
-**Following Revision:** [v0.2.1](https://github.com/kuro46/CommandUtility/tree/v0.2.1)
+**Following Revision:** [v0.3.0](https://github.com/kuro46/CommandUtility/tree/v0.3.0)
 
 ## Commands
 
@@ -39,8 +39,6 @@ Set executor's display name to `<name>`. Space character is allowed.
 **Registered at** [here](src/main/java/com/github/kuro46/commandutilityexample/Main.java#L64)
 
 Display helps.
-
-![help](https://user-images.githubusercontent.com/36619228/61878727-7a7dd700-af2c-11e9-9843-7756a0c06db5.gif)
 
 ## Tested version
 
