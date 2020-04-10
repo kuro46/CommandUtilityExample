@@ -1,5 +1,7 @@
 # CommandUtilityExample
 
+**This project has been archived because examples are moved to [CommandUtility](https://github.com/kuro46/CommandUtility).**
+
 Example project for [CommandUtility](https://github.com/kuro46/CommandUtility).
 
 **Following Revision:** [v0.3.0](https://github.com/kuro46/CommandUtility/tree/v0.3.0)
